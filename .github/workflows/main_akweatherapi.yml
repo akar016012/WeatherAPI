@@ -12,7 +12,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
     steps:
       - uses: actions/checkout@v2
 
