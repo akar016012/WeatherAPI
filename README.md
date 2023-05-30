@@ -1,3 +1,3 @@
 # WeatherAPI
 
-URL : https://akweatherapi.azurewebsites.net/
+URL : https://secret-basin-69272.herokuapp.com/
