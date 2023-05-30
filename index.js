@@ -17,7 +17,7 @@ app.post("/", (req, res) => {
   console.log(req.body.CityName);
   const query = req.body.CityName;
   const mySecret = process.env['API_KEY']
-  const url = `https://api.openweathermap.org/data/2.5/weather?appid=a2be3509ecda5a9658e5ee8d17acd99d&q=${query}&units=imperial`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?appid=${mySecret}&q=${query}&units=imperial`;
   https.get(url, (respond) => {
     console.log(respond.statusCode);
     respond.on("data", (data) => {
