@@ -1,3 +1,3 @@
 # WeatherAPI
 
-URL : https://weatherapi.adityakar.repl.co/
+URL : https://akweatherapi.azurewebsites.net/
