@@ -35,26 +35,31 @@ jobs:
           name: node-app
           path: .
 
+  # ...
+
   deploy:
     runs-on: ubuntu-latest
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+      # ...
+
+      - name: Set app settings
+        uses: azure/appservice-settings@v1
         with:
-          name: node-app
+          app-name: 'AKWeatherAPI'
+          slot-name: 'Production' # remove this line if you are not deploying to a specific slot
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A2158381627B4E978961DD155D17E26D }}
+          app-settings-json: '{"API_KEY": "${{ secrets.API_KEY }}"}'
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'AKWeatherAPI'
-          slot-name: 'Production'
+          slot-name: 'Production' # remove this line if you are not deploying to a specific slot
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A2158381627B4E978961DD155D17E26D }}
           package: .
