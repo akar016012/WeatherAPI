@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
-const mySecret = process.env.API_KEY
+const mySecret = process.env.API_KEY;
 
 app.get("/style.css", () => {
   res.sendFile(__dirname + "/style.css");
@@ -39,6 +39,6 @@ app.post("/", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Sever is running on 3000");
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Sever is now running!");
 });
