@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
+const mySecret = process.env["API_KEY"];
 
 app.get("/style.css", () => {
   res.sendFile(__dirname + "/style.css");
@@ -16,7 +17,6 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   console.log(req.body.CityName);
   const query = req.body.CityName;
-  const mySecret = process.env.API_KEY;
   const url = `https://api.openweathermap.org/data/2.5/weather?appid=${mySecret}&q=${query}&units=imperial`;
   https.get(url, (respond) => {
     console.log(respond.statusCode);
